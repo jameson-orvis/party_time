@@ -14,8 +14,11 @@ body{
 </head>
 <body>
 <div class="image-container">
+    <p style="font-size: 52px; font-weight: bold;">birthday party jameson lauren mason</p>
+<div class="row">
+  <div class="column">
 
-<h1>birthday party jameson lauren mason</h1>
+
 
 <p>may 10 2025 9pm @ 24 troutman</p>
 
@@ -28,8 +31,27 @@ body{
     hans castorp <br>
     dj dr halloween <br>
     more??
+    </div>
+<div class="column">
+    <div style="text-align:center;" class="d3-animation">
+        <svg>
+        </svg>
+    </div>
+    
+    
+</div>
+<div class="container">
+    <div class="ball"></div>
+    </div>
+    <br>
+</div>
 
 </p>
+
+
+</head>
+
+
 
 <meta charset="utf-8" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
@@ -57,16 +79,52 @@ body{
   .d3-animation {
     position: absolute;
   }
+  .verpa {
+    margin-left: 30%;
+    height: 120px;
+    width: 120px;
+  }
+.ball {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #00FFFF;
+  bottom: 0;
+  left: 0;
+  animation: bounce 1s infinite;
+}
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 100%;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(300px);
+    width: 50px;
+  }
+  50% {
+    transform: translateX(1000px);
+    width: 50px;
+  }
+  100% {
+    transform: translateY(0);
+    width: 50px;
+  }
+}
 </style>
 
+
+  
+
+
+
 </div>
 
-<div style="text-align:center;" class="d3-animation">
-  <svg>
-  </svg>
-</div>
-</body>
-  <footer>
+<footer>
 <script>
 
 
@@ -155,13 +213,16 @@ function makeAlert(){
 setInterval(makeAlert, 1800);
 
 }
+</script>
+
+
 
 
 </script>
   </footer>
 
-</html>
 
+<div class="verpa"><img src="VERPA.png"></div>
 
 <img src="one.jpg">
 <img src="two.jpg">
