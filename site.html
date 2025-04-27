@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>party</title>
+<style>
+body{
+  height: 100%;
+  position: relative;
+  font-family: Papyrus;
+}
+
+</style>
+</style>
+</head>
+<body>
+<div class="image-container">
+
+<h1>birthday party jameson lauren mason</h1>
+
+<p>may 10 2025 9pm @ 24 troutman</p>
+
+<p> 
+    music from <br>
+    dj ducky <br>
+    baby pandan <br>
+    the dj fka lonelee <br>
+    citysproblem <br>
+    hans castorp <br>
+    dj dr halloween <br>
+    more??
+
+</p>
+
+<meta charset="utf-8" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+</head>
+<style>
+  body {
+    background-color: #000000;
+    height: 100%;
+    position: auto;
+  }
+  svg {
+    display: block;
+    margin: auto;
+    height: 800px;
+    width: 800px;
+  }
+  .image-container {
+    background-image: url("one.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+  }
+  .d3-animation {
+    position: absolute;
+  }
+</style>
+
+</div>
+
+<div style="text-align:center;" class="d3-animation">
+  <svg>
+  </svg>
+</div>
+</body>
+  <footer>
+<script>
+
+
+
+d3.csv("graph_edgelist.csv",function(error,data) {dataViz(data)});
+
+function dataViz(incData) {
+
+  var nodeHash = {};
+  var nodes = [];
+  var edges = [];
+
+  incData.forEach(function (edge) {
+    if (!nodeHash[edge.source]) {
+      nodeHash[edge.source] = {id: edge.source, label: edge.source};
+      nodes.push(nodeHash[edge.source]);
+    }
+    if (!nodeHash[edge.target]) {
+      nodeHash[edge.target] = {id: edge.target, label: edge.target};
+      nodes.push(nodeHash[edge.target]);
+    }
+    edges.push({source: nodeHash[edge.source], target: nodeHash[edge.target], weight: edge.weight});
+  });
+
+  var force = d3.layout.force().nodes(nodes).links(edges)
+  .size([600,600])
+  .charge(-30)
+  .linkDistance(60)
+  .on("tick", updateNetwork);
+
+  d3.select("svg").selectAll("line")
+  .data(edges)
+  .enter()
+  .append("line")
+  .style("stroke-width", "1px")
+  .style("stroke", "#008080");
+
+  d3.select("svg").selectAll("circle")
+  .data(nodes)
+  .enter()
+  .append("circle")
+  .style("fill", "#00FFFF")
+  .attr("r", 6);
+
+  //Container for the gradients
+  //var defs = d3.select("svg").append("defs");
+
+  //Filter for the outside glow
+  //var filter = defs.append("filter")
+  //    .attr("id","glow");
+  //filter.append("feGaussianBlur")
+  //    .attr("stdDeviation","3.5")
+  //    .attr("result","coloredBlur");
+  //var feMerge = filter.append("feMerge");
+  //feMerge.append("feMergeNode")
+  //    .attr("in","coloredBlur");
+  //feMerge.append("feMergeNode")
+  //    .attr("in","SourceGraphic");
+
+  force.start();
+
+  //d3.selectAll("circle").style("filter", "url(#glow)");
+
+  function updateNetwork() {
+    d3.select("svg").selectAll("line")
+      .attr("x1", function (d) {return d.source.x})
+      .attr("x2", function (d) {return d.target.x})
+      .attr("y1", function (d) {return d.source.y})
+      .attr("y2", function (d) {return d.target.y});
+
+    d3.select("svg").selectAll("circle")
+      .attr("cx", function (d) {return d.x})
+      .attr("cy", function (d) {return d.y});
+  }
+
+  var clickableThings = d3.select("svg").selectAll("circle")
+  clickableThings.on("click", function(d) {
+    console.log(d);
+    force.alpha(0.5);
+})
+
+function makeAlert(){ 
+  force.alpha(0.5);
+};
+
+setInterval(makeAlert, 1800);
+
+}
+
+
+</script>
+  </footer>
+
+</html>
+
+
+<img src="one.jpg">
+<img src="two.jpg">
+
+</body>
+</html>
